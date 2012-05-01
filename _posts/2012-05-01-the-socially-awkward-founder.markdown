@@ -4,7 +4,7 @@ title: The Socially Awkward Founder
 categories : [misc]
 ---
 
-There are those people who are the life of the party, who make friends easily, and can jump in and out of social situations with ease. I am not one of them. I'm the guy who'd rather code then go to a party, who purposefully vacations in places that don't speak English, and chooses hobbies that involve not speaking to people for days at a time.
+There are those people who are the life of the party, who make friends easily, and flit between conversations with ease. I am not one of these people. I'm the guy who'd rather code then go to a party, who purposefully vacations in places that don't speak English, and chooses hobbies that involve not speaking to people for days at a time.
 
 Until recently I was free to be as socially reluctant as I wanted, but then I co-founded [SourceNinja](http://www.sourceninja.com) and I was forced to deal with the public. At first it was bad, I would arm myself with 3 glasses of wine, awkwardly inject myself into conversations, and force my pitch onto anyone who would listen. But, over the past couple months, though a mixture of observation and help from my [co-founder](http://bretthard.in/) I've gradually gotten better.
 
