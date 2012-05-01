@@ -9,14 +9,14 @@ pygments: true
 # Themes are encouraged to use these universal variables
 # so be sure to set them if your theme uses them.
 #
-title : unique blog title
+title : A Unique Blog Title
 tagline:
 author :
   name : Matt Stump
   email : mstump@matthewstump.com
   github : mstump
   twitter : mattstump
-  feedburner : matthewstump/uniq_blog_title
+  feedname : matthewstump/uniq_blog_title
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt
@@ -81,11 +81,7 @@ JB :
   comments :
     provider : disqus
     disqus :
-      short_name : jekyllbootstrap
-    livefyre :
-      site_id : 123
-    intensedebate :
-      account : 123abc
+      short_name : uniqueblogtitle
     facebook :
       appid : 123
       num_posts: 5
@@ -100,10 +96,6 @@ JB :
     provider : google
     google :
         tracking_id : 'UA-15786505-1'
-    getclicky :
-      site_id :
-    mixpanel :
-        token : '6f66c1de97793339fd7c3ee7416f3bf4'
 
   # Settings for sharing helper.
   # Sharing is for things like tweet, plusone, like, reddit buttons etc.
@@ -112,14 +104,3 @@ JB :
   #
   sharing :
     provider : false
-
-  # Settings for all other include helpers can be defined by creating
-  # a hash with key named for the given helper. ex:
-  #
-  #   pages_list :
-  #     provider : "custom"
-  #
-  # Setting any helper's provider to 'custom' will bypass the helper code
-  # and include your custom code. Your custom file must be defined at:
-  #   ./_includes/custom/[HELPER]
-  # where [HELPER] is the name of the helper you are overriding.
