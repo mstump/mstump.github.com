@@ -1,15 +1,14 @@
 ---
-layout: page
-title: Matt Stump's Blog
-tagline: A witty supporting tagline
+layout: index
 ---
 
 <section class="content">
-  <ul class="listing">
-    {% for post in site.posts %}
-    <li>
-      <span>{{ post.date | date: "%B %e, %Y" }}</span> <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-    {% endfor %}
-  </ul>
+  {% for post in site.posts %}
+  <div>
+  <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+  <p>
+	{{ post.content | strip_html | truncatewords: 100 }}
+  </p>
+  </div>
+  {% endfor %}
 </section>
