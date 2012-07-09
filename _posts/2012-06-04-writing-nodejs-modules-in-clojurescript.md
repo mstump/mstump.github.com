@@ -15,15 +15,15 @@ Start out with a simple ClojureScript program
 
 <script src="https://gist.github.com/2870806.js?file=stage1.cljs"> </script>
 
-As stated in [other guides](https://github.com/clojure/clojurescript/wiki/Quick-Start), in order to make this program run with Node.js you need to specify a main by setting the value of <code>*main-cli-fn*</code> to some function.
+As stated in [other guides](https://github.com/clojure/clojurescript/wiki/Quick-Start), in order to make this program run with Node.js you need to specify a main by setting the value of `*main-cli-fn*` to some function.
 
 <script src="https://gist.github.com/2870806.js?file=stage2.cljs"> </script>
 
-To compile the ClojureScript we use the incantation below. cljsc will take all <code>*.cljs</code> files found in the src directory, compile them to js and spit the result out via stdout. We pipe the output to a js file matching the module name in the lib directory. The fact that we use the lib directory is important, because that's where Node.js is going to look for code.
+To compile the ClojureScript we use the incantation below. cljsc will take all `*.cljs` files found in the src directory, compile them to js and spit the result out via stdout. We pipe the output to a js file matching the module name in the lib directory. The fact that we use the lib directory is important, because that's where Node.js is going to look for code.
 
 <script src="https://gist.github.com/2870806.js?file=build.sh"> </script>
 
-The only option which is stricly neccessary is <code>:target</code> which should be set to <code>:nodejs</code>. This option generates a main functions which in turn calls the function specified by <code>*main-cli-fn*</code>. While the other are not required they will make this whole process go much smoother. We found that setting the optimizations level to anything other than <code>:simple</code> produced unreliable code which was difficult to debug. For our purposes heavy optimization wasn't neccessary so I didn't invest much effort in getting it to work, give it a shot, your millage may vary.
+The only option which is stricly neccessary is `:target` which should be set to <code>:nodejs</code>. This option generates a main functions which in turn calls the function specified by <code>*main-cli-fn*</code>. While the other are not required they will make this whole process go much smoother. We found that setting the optimizations level to anything other than <code>:simple</code> produced unreliable code which was difficult to debug. For our purposes heavy optimization wasn't neccessary so I didn't invest much effort in getting it to work, give it a shot, your millage may vary.
 
 Most of your debugging time is going to be tracing through the generated JS code, for this reason we always enable :pretty-print which results in human-readable code being generated.
 <h2>Export Functions</h2>
@@ -31,23 +31,24 @@ At this point we have a fully functional Node.js program. When we run the genera
 
 <script src="https://gist.github.com/2870806.js?file=output.txt"> </script>
 
-Great it works, but every time your module is included it's going to run whatever function is bound to <code>*main-cli-fn*</code>. Leaving it unbound isn't an option so we need to bind it to a noop function. The final form is below.
+Great it works, but every time your module is included it's going to run whatever function is bound to `*main-cli-fn*`. Leaving it unbound isn't an option so we need to bind it to a noop function. The final form is below.
 
 <script src="https://gist.github.com/2870806.js?file=stage3.cljs"> </script>
 
-To turn this program into a module we need a couple small additions. The first is that we need to export/extern the public functions so that they are visible to node. We do this by adding a file <code>lib/main.js</code>.
+To turn this program into a module we need a couple small additions. The first is that we need to export/extern the public functions so that they are visible to node. We do this by adding a file `lib/main.js`.
 
 <script src="https://gist.github.com/2870806.js?file=main.js"> </script>
 
-You need to import the generated javascript code outputed by the ClojureScript compiler, this is done by the <code>require("./sample.js")</code>. The actual export is done by the next line <code>exports.core = sample.sample.core</code>, this makes the sample.core namespace defined by our ClojureScript program visible to node.js. All functions declared by your clojure namespace should now be accessible.
-<h2>Publishing the Module</h2>
-The last addition is the <code>packages.json</code> file which lives at your project root. You can find [lots](http://package.json.nodejitsu.com/) [of documentation](http://blog.nodejitsu.com/package-dependencies-done-right) for this [file](http://npmjs.org/doc/json.html), so I won't spends lots of time on it, I'll just emphasise a couple points.
+You need to import the generated javascript code outputed by the ClojureScript compiler, this is done by the `require("./sample.js")`. The actual export is done by the next line <code>exports.core = sample.sample.core</code>, this makes the sample.core namespace defined by our ClojureScript program visible to node.js. All functions declared by your clojure namespace should now be accessible.
 
-<strong>Spend some time making sure which version of Node.js introduced whatever functionality you require.</strong> For instance we use npm programatily, but the functionality wasn't introduced until 6.0 which is newer than the verion deployed by Heroku. Node.js is very young, and is a bit of a moving target, spending a little time up front will prevent you from being burned. Using nvm becomes invaluable when attempting to validate your module against different versions of node. Oh, and please populate the repository and license fields, it's just part of being a good open source citizen.
+## Publishing the Module
+The last addition is the `packages.json` file which lives at your project root. You can find [lots](http://package.json.nodejitsu.com/) [of documentation](http://blog.nodejitsu.com/package-dependencies-done-right) for this [file](http://npmjs.org/doc/json.html), so I won't spends lots of time on it, I'll just emphasise a couple points.
+
+**Spend some time verifying which version of Node.js introduced the functionality you require.** For instance we use npm programatily, but the functionality wasn't introduced until 6.0 which is newer than the verion deployed by Heroku. Node.js is very young, and is a bit of a moving target, spending a little time up front will prevent you from being burned. Using nvm becomes invaluable when attempting to validate your module against different versions of node. Oh, and please populate the repository and license fields, it's just part of being a good open source citizen.
 
 <script src="https://gist.github.com/2870806.js?file=packages.json"> </script>
 
-At this point from your project root you can execute <code>npm publish</code> and npm will walk you through creating an account and publish your module to npm.
+At this point from your project root you can execute `npm publish` and npm will walk you through creating an account and publish your module to npm.
 
 ## Pro Tips
 When passing data from ClojureScript to Node.js your going to need to convert it from a ClojureScript data st
@@ -56,4 +57,4 @@ ructure to a javascript object. There have been [various](https://gist.github.co
 <script src="https://gist.github.com/2870806.js?file=util.cljs"> </script>
 
 ## Testing
-Unit testing can be done using the built-in [clojure.test](http://richhickey.github.com/clojure/clojure.test-api.html) API, and that seems to be the recommended method. It should be possible to test functionality via one of the Node.js frameworks such as vows, but that's another blog post. If you want to test the integration between other Node.js programs and your newly minted module you can create a test program which requires your module and then copy your module to the <code>node_modules</code> sub-directory which allows you to do pre-publish testing. This is what we do as part of our last round of testing before we publish.
+Unit testing can be done using the built-in [clojure.test](http://richhickey.github.com/clojure/clojure.test-api.html) API, and that seems to be the recommended method. It should be possible to test functionality via one of the Node.js frameworks such as vows, but that's another blog post. If you want to test the integration between other Node.js programs and your newly minted module you can create a test program which requires your module and then copy your module to the `node_modules` sub-directory which allows you to do pre-publish testing. This is what we do as part of our last round of testing before we publish.
