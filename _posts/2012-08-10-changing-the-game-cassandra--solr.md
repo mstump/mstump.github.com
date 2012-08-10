@@ -7,7 +7,7 @@ tags: []
 ---
 {% include JB/setup %}
 
-The [Cassandra Summit](http://www.datastax.com/events/cassandrasummit2012) was a lot of fun. We met lots of good people, attended really interesting talks, and lots of good press coverage. I'm really looking forward to the videos being published so I can check out some of the talks that I missed.
+The [Cassandra Summit](http://www.datastax.com/events/cassandrasummit2012) was a lot of fun. We met lots of good people, attended really interesting talks, and got lots of good [press coverage](http://youtu.be/WYriQp0ZVU4). I'm really looking forward to the videos being published so I can check out some of the talks that I missed.
 
 In the meantime I've uploaded the slide deck from my talk: Changing the Game, Cassandra + Solr. I've fixed some of the formatting issues that cropped up in my talk. I've learned my lesson, always double check formatting after converting to powerpoint.
 
