@@ -24,7 +24,8 @@ a {
 	width: 200px;
 	float: left;
 	display: inline;
-	padding: 50px;
+	padding-top: 35px;
+	padding-left: 50px;
 	position: fixed;
 	/* height: 100%; */
 	z-index: 0;
