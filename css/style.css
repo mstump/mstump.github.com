@@ -121,14 +121,14 @@ nav.navbar a {
         overflow: hidden;
     }
 
-    /* nav.navbar li:not(:first-child) { */
-    /*     display: none; */
-    /* } */
+    nav.navbar li:not(:first-child) {
+        display: none;
+    }
 
-    /* nav.navbar li.icon { */
-    /*     float: right; */
-    /*     display: inline-block; */
-    /* } */
+    nav.navbar li.icon {
+        float: right;
+        display: inline-block;
+    }
 }
 
 @media screen and (max-width:680px) {
